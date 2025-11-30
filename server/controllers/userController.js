@@ -76,7 +76,7 @@ export const createUser = async (req, res) => {
   }
 };
 
-// UPDATE a user
+// Edit a user
 export const updateUser = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -98,7 +98,7 @@ export const updateUser = async (req, res) => {
   }
 };
 
-// DELETE a user
+// Remove a user
 export const deleteUser = async (req, res) => {
   try {
     const { userId } = req.params;

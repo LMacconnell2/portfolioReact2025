@@ -24,7 +24,7 @@ export const register = async (req, res) => {
     const { userId, accountTypeId = 3, firstName, lastName, email, password } = req.body;
 
     if (!email || !password || !firstName || !lastName) {
-      return res.status(400).json({ error: "Missing required fields" });
+      return res.status(400).json({ error: "Missing required fields" }); //All fields must be filled out.
     }
 
     // Check if duplicate email exists 
@@ -32,7 +32,7 @@ export const register = async (req, res) => {
     if (existing) {
       return res.status(400).json({ error: "Email already registered" });
     }
-
+    //Check if duplicate ID exists
     if (userId) {
       const existingId = await user.findOne({ userId });
       if (existingId) {
@@ -40,7 +40,7 @@ export const register = async (req, res) => {
       }
     }
 
-    const hashed = await bcrypt.hash(password, SALT_ROUNDS);
+    const hashed = await bcrypt.hash(password, SALT_ROUNDS); //SALT IT 
 
     const user = await user.create({
       userId, accountTypeId, firstName, lastName, email, password: hashed});
